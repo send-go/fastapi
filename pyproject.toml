@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sendgo-fastapi"
+version = "1.0.0"
+description = "Sendgo FastAPI 확장 — 카카오 알림톡/친구톡, SMS/LMS/MMS"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Sendgo", email = "dev@sendgo.io"}]
+keywords = ["sendgo", "fastapi", "kakao", "alimtalk", "sms", "notification", "korea"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "sendgo-python>=1.0",
+    "fastapi>=0.110",
+    "pydantic-settings>=2.0",
+]
+
+[project.urls]
+Homepage = "https://sendgo.io"
+Repository = "https://github.com/send-go/fastapi"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sendgo_fastapi*"]
