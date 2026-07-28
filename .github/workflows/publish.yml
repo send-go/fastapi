@@ -3,6 +3,7 @@ name: Publish to PyPI
 # vX.Y.Z 태그를 push 하거나 GitHub Release 를 게시하면 PyPI 로 배포합니다.
 # PyPI Trusted Publishing(OIDC) 사용 — API 토큰 불필요.
 on:
+  workflow_dispatch:        # 수동 실행(Actions 탭 또는 gh workflow run)
   push:
     tags:
       - "v*"
