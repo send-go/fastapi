@@ -388,6 +388,31 @@ A. `app.dependency_overrides[get_sendgo] = lambda: mock_client`로 의존성을 
 
 ---
 
+## 브랜드메시지 · 짧은 URL
+
+이 패키지는 코어(`sendgo-python`)의 클라이언트를 그대로 노출하므로, 코어에 있는 채널이
+모두 그대로 쓸 수 있습니다. 두 기능 모두 **v2 전용**입니다.
+
+| 기능 | 접근 |
+|------|------|
+| 카카오 브랜드메시지 (친구톡의 후속 채널) | `sendgo.brand_message` |
+| 짧은 URL (단축 + 클릭 반응 분석) | `sendgo.short_url` |
+
+브랜드메시지는 채널 친구가 아닌 수신자에게도 보낼 수 있고(`targeting` = `N`),
+수신 동의한 전체 채널 친구에게 동보 발송할 수도 있습니다(`targeting` = `F`).
+
+짧은 URL 은 메시지 본문의 링크를 줄이고 클릭 반응(일별 추이·디바이스·유입경로·국가)을
+집계합니다.
+
+사용 예시와 파라미터는 [코어 README](https://github.com/send-go) 와
+[SDK 가이드](https://sendgo.io/ko/sdk) 를 참고하세요.
+
+## 변경 사항
+
+### 1.1.0 (2026-08-11)
+
+- 브랜드메시지·짧은 URL 접근 방법 문서화 (코어를 그대로 노출)
+
 ## 라이선스
 
 MIT License © 2026 [Sendgo](https://sendgo.io)
