@@ -422,6 +422,13 @@ A. `app.dependency_overrides[get_sendgo] = lambda: mock_client`로 의존성을 
 
 ## 변경 사항
 
+### 1.2.1 (2026-08-14)
+
+- 레지스트리 목록에 노출되는 패키지 설명에서 친구톡을 브랜드메시지로 교체했습니다.
+  npm/PyPI/Packagist/Maven/NuGet/RubyGems 검색 결과에 그대로 찍히는 문자열이라
+  종료된 채널을 계속 홍보하고 있었습니다.
+- 검색 키워드에 `brand-message` 를 추가했습니다 (`friendtalk` 은 유입 검색어라 유지).
+
 ### 1.2.0 (2026-08-14)
 
 - **친구톡 Deprecated 표기** — 친구톡은 카카오 정책에 따라 2025-12-31 종료되었고,
