@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sendgo-fastapi"
-version = "1.0.0"
+version = "1.2.0"
 description = "Sendgo FastAPI 확장 — 카카오 알림톡/친구톡, SMS/LMS/MMS"
 readme = "README.md"
 license = {text = "MIT"}
