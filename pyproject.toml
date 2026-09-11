@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sendgo-fastapi"
-version = "1.2.1"
+version = "1.3.0"
 description = "Sendgo FastAPI 확장 — 카카오 알림톡/브랜드메시지, SMS/LMS/MMS"
 readme = "README.md"
 license = {text = "MIT"}
@@ -23,7 +23,7 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "sendgo-python>=1.0",
+    "sendgo-python>=1.3",
     "fastapi>=0.110",
     "pydantic-settings>=2.0",
 ]
