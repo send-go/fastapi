@@ -19,8 +19,14 @@ FastAPI 애플리케이션에서 Sendgo 코어(`sendgo-python`)를 손쉽게 사
         return {"success": True}
 """
 
-from .dependencies import SendgoDep, get_sendgo, init_sendgo
+from .dependencies import SendgoDep, get_sendgo, init_sendgo, AccountDep, get_account
 from .settings import SendgoSettings
 
-__all__ = ["SendgoSettings", "get_sendgo", "SendgoDep", "init_sendgo"]
-__version__ = "1.0.0"
+from sendgo import AccountClient
+
+__all__ = ["AccountDep", "get_account", "AccountClient", "SendgoSettings", "get_sendgo", "SendgoDep", "init_sendgo"]
+try:
+    from importlib.metadata import PackageNotFoundError, version
+    __version__ = version("sendgo-fastapi")
+except PackageNotFoundError:
+    __version__ = "0.0.0.dev0"

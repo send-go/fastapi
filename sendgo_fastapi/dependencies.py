@@ -14,7 +14,7 @@ from functools import lru_cache
 from typing import Annotated, Optional
 
 from fastapi import Depends, FastAPI, Request
-from sendgo import Sendgo
+from sendgo import Sendgo, AccountClient
 
 from .settings import SendgoSettings
 
@@ -73,3 +73,16 @@ def init_sendgo(app: FastAPI, settings: SendgoSettings | None = None) -> Sendgo:
 
 # 라우트에서 `sendgo: SendgoDep` 형태로 주입받기 위한 타입 별칭
 SendgoDep = Annotated[Sendgo, Depends(get_sendgo)]
+
+
+# 계정 API 설정은 발송용 필수 키를 요구하는 SendgoSettings와 독립적입니다.
+def get_account() -> AccountClient:
+    """SENDGO_AGENT_TOKEN과 SENDGO_BASE_URL로 계정 클라이언트를 만듭니다."""
+    import os
+    return AccountClient(
+        agent_token=os.environ.get("SENDGO_AGENT_TOKEN", ""),
+        base_url=os.environ.get("SENDGO_BASE_URL", "https://sendgo.io"),
+    )
+
+
+AccountDep = Annotated[AccountClient, Depends(get_account)]
