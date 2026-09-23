@@ -557,9 +557,9 @@ MIT License © 2026 [Sendgo](https://sendgo.io)
 
 *키워드: 카카오 알림톡 FastAPI, 카카오 친구톡 FastAPI, SMS 발송 FastAPI, 알림톡 FastAPI 패키지, FastAPI 카카오 API 연동, FastAPI 의존성 주입, Sendgo FastAPI SDK*
 
-## 계정 API (1.4.0)
+## 계정 API (1.5.0)
 
-코어 1.4.0의 계정·조직·API 키·허용 IP 관리 12개 API를 사용할 수 있습니다.
+코어 1.5.0의 계정·조직·API 키·허용 IP 관리 12개 API를 사용할 수 있습니다.
 발송용 키 없이 에이전트 토큰만으로 구성할 수 있습니다.
 
 발송용 `accessKey`/`secretKey`가 없는 단계에서 사용하는 **별도 계정 클라이언트**입니다.
@@ -581,3 +581,28 @@ from sendgo_fastapi import AccountDep
 def status(account: AccountDep):
     return account.me()
 ```
+
+## 템플릿 폴더 (1.5.0)
+
+기업 계정의 발송용 API 키와 `apiVersion=v2` 설정으로 사용하는 서버 전용 API입니다.
+폴더는 알림톡·브랜드메시지가 공유하며, 목록의 `templateType`은 `notice` 또는 `brand`입니다.
+목록은 `data.folders` 트리와 `total`, `uncategorised` 개수를 반환합니다.
+`templateCount`는 하위 폴더를 제외한 해당 폴더의 템플릿 수입니다.
+
+- 생성: `name`, 선택 `parentUuid`. 최대 5단계이며 같은 부모 아래 이름 중복은 409입니다.
+- 이동: 동일 발신프로필의 `templateCodes` 1~100개. `folderUuid`는 필수이며 `null`이면 미분류로 이동합니다.
+- 템플릿 목록: `folderUuid=none`은 미분류, UUID는 해당 폴더, 생략은 전체입니다.
+- 템플릿 등록: 선택 필드 `folderUuid`로 폴더를 지정합니다. 기존 템플릿 수정 API 대신 폴더 이동 API를 사용하세요.
+
+승인되지 않은 키의 `403 ACCESS_KEY_NOT_APPROVED`는 토큰 재발급·재시도 없이 반환합니다.
+계정 API의 `autoApprove`는 서버 설정의 실제 승인 정책을 나타냅니다.
+
+```python
+from sendgo_fastapi import SendgoDep
+
+@app.get("/template-folders")
+def folders(sendgo: SendgoDep):
+    return sendgo.template_folders.list(template_type="notice")
+```
+
+코어 1.5.0 이상이 필요합니다. 전체 메서드는 [코어 문서](https://github.com/send-go/python#템플릿-폴더-150)를 참고하세요.
